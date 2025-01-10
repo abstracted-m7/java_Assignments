@@ -1,0 +1,189 @@
+
+``Project 6 : Camera App``
+
+1. AndroidManifest.xml :
+
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+2. shape_btn.xml :
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+        <corners android:radius="10px"/>
+        <solid android:color="#C2F4C4"/>
+        <stroke android:width="2dp" android:color="#040404" />
+    </shape>
+
+3. activity_camera_app.xml :
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cameraApp">
+
+    <ImageView
+        android:id="@+id/imagePlate"
+        android:layout_width="419dp"
+        android:layout_height="526dp"
+        android:background="@drawable/shape_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:layout_width="141dp"
+        android:layout_height="59dp"
+        android:gravity="center"
+        android:onClick="showMyCamera"
+        android:text="Click &amp; Save"
+        android:textColor="#FFFFFF"
+        android:textSize="17dpdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.904" />
+
+    <Button
+        android:layout_width="108dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Back"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:onClick="cameraApp_to_mainMenu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.788"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlate"
+        app:layout_constraintVertical_bias="0.895" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+4. cameraApp.java :
+
+package com.example.assignmenthub;
+
+import android.Manifest;
+import android.content.Intent;
+import android.view.View;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
+
+public class cameraApp extends AppCompatActivity {
+
+    ImageView imageView;
+    Bitmap bitmap;
+    public static final int CAMERA_REQUEST=9999;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_camera_app);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        imageView=(ImageView) findViewById(R.id.imagePlate);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(cameraApp.this, new String[]
+                    {Manifest.permission.CAMERA}, CAMERA_REQUEST);
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==CAMERA_REQUEST){
+            bitmap=(Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
+            imageView.setImageBitmap(bitmap);
+            Toast.makeText(this,"Before save image",Toast.LENGTH_LONG).show();
+            Log.d("Image Save","Hello image saved1");
+            saveImageToGallery(bitmap);
+            Toast.makeText(this,"After save image",Toast.LENGTH_LONG).show();
+            Log.d("Image Save","Hello image saved2");
+        }
+        Log.d("Image Save","Hello image saved201");
+    }
+
+    public void showMyCamera(View v){
+        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,CAMERA_REQUEST);
+    }
+
+    public void saveImageToGallery(Bitmap imageBitmap){
+        File storageDir =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String timeStamp=new SimpleDateFormat("yyyyMMdd_HHmmss",
+                Locale.getDefault()).format(new Date());
+        String fileName="MyImg_"+timeStamp+".jpg";
+        File imageFile=new File(storageDir,fileName);
+        try{
+            FileOutputStream outputStream=new FileOutputStream(imageFile);
+
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+            Intent mediaScanIntent=new
+                    Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+
+            mediaScanIntent.setData(Uri.fromFile(imageFile));
+            sendBroadcast(mediaScanIntent);
+
+            Toast.makeText(this,"Image saved to gallery",Toast.LENGTH_LONG).show();
+
+        }catch (Exception e){
+            Log.d("Exception Image", Objects.requireNonNull(e.getMessage()));
+
+            Toast.makeText(this,"Unable to Image saved to gallery",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+    public void cameraApp_to_mainMenu ( View v ){
+        Intent back = new Intent(this , AssignmentPrompt.class);
+        startActivity(back);
+
+        Toast.makeText(this, "Back to Assignment Hub", Toast.LENGTH_SHORT).show();
+    }
+
+}

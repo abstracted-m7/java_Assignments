@@ -1,0 +1,43 @@
+Prime :-
+
+---------------
+oncreate:- 
+---------------
+
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        EditText etNumber = findViewById(R.id.etNumber);
+        Button btnCheck = findViewById(R.id.btnCheck);
+        TextView tvResult = findViewById(R.id.tvResult);
+
+        btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = etNumber.getText().toString();
+
+                if (input.isEmpty()) {
+                    tvResult.setText("Please enter a number.");
+                    return;
+                }
+
+                int number = Integer.parseInt(input);
+
+                if (isPrime(number)) {
+                    tvResult.setText(number + " is a prime number.");
+                } else {
+                    tvResult.setText(number + " is not a prime number.");
+                }
+            }
+        });
+    }
+
+    private boolean isPrime(int n) {
+        if (n <= 1) return false; // 0 and 1 are not prime
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }

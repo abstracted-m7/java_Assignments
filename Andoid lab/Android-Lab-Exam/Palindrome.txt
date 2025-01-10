@@ -1,0 +1,103 @@
+
+
+---------------------
+Oncreate:-
+---------------------
+
+ @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        EditText etInput = findViewById(R.id.etInput);
+        Button btnCheckPalindrome = findViewById(R.id.btnCheckPalindrome);
+        TextView tvResult = findViewById(R.id.tvResult);
+
+        btnCheckPalindrome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = etInput.getText().toString().trim();
+
+                if (input.isEmpty()) {
+                    tvResult.setText("Please enter a value.");
+                    return;
+                }
+
+                boolean isStringPalindrome = isPalindrome(input);
+                boolean isIntegerPalindrome = false;
+
+                // Check if the input can be treated as an integer
+                try {
+                    int number = Integer.parseInt(input);
+                    isIntegerPalindrome = isPalindrome(Integer.toString(number));
+                } catch (NumberFormatException e) {
+                    // Do nothing, input is not an integer
+                }
+
+                StringBuilder result = new StringBuilder();
+                if (isStringPalindrome) {
+                    result.append("\"").append(input).append("\" is a palindrome string.\n");
+                } else {
+                    result.append("\"").append(input).append("\" is not a palindrome string.\n");
+                }
+
+                if (isIntegerPalindrome) {
+                    result.append(input).append(" is a palindrome integer.");
+                } else {
+                    result.append(input).append(" is not a palindrome integer.");
+                }
+
+                tvResult.setText(result.toString());
+            }
+        });
+    }
+
+    private boolean isPalindrome(String value) {
+        int start = 0;
+        int end = value.length() - 1;
+
+        while (start < end) {
+            if (value.charAt(start) != value.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+
+
+-----------------------------
+Using methods:-
+-----------------------------
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        EditText etInput = findViewById(R.id.etInput);
+        Button btnCheckPalindrome = findViewById(R.id.btnCheckPalindrome);
+        TextView tvResult = findViewById(R.id.tvResult);
+
+        btnCheckPalindrome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = etInput.getText().toString();
+                if (input.isEmpty()) {
+                    tvResult.setText("Please enter a value.");
+                } else {
+                    if (isPalindrome(input)) {
+                        tvResult.setText(input + " is a palindrome.");
+                    } else {
+                        tvResult.setText(input + " is not a palindrome.");
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean isPalindrome(String value) {
+        String reversed = new StringBuilder(value).reverse().toString();
+        return value.equals(reversed);
+    }

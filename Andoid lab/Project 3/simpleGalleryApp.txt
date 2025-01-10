@@ -1,0 +1,304 @@
+
+``Project 3 : Image gallery App``
+
+1. Activity_main.xml :
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="180dp"
+        android:layout_height="220dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499">
+
+        <RadioButton
+            android:id="@+id/radioButtonImg1"
+            android:layout_width="123dp"
+            android:layout_height="37dp"
+            android:text="Image 1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButtonImg2"
+            android:layout_width="123dp"
+            android:layout_height="33dp"
+            android:text="Image 2"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButtonImg3"
+            android:layout_width="124dp"
+            android:layout_height="38dp"
+            android:text="Image 3"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButtonImg4"
+            android:layout_width="126dp"
+            android:layout_height="37dp"
+            android:text="Image 4"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButtonImg5"
+            android:layout_width="127dp"
+            android:layout_height="37dp"
+            android:text="Image 5"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButtonImg6"
+            android:layout_width="121dp"
+            android:layout_height="34dp"
+            android:text="Image 6"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:text="Show Image"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.477" />
+
+    <Button
+        android:id="@+id/buttonOk"
+        android:layout_width="105dp"
+        android:layout_height="55dp"
+        android:background="@drawable/btn_bg"
+        android:onClick="show_img"
+        android:text="Ok"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.787"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.581" />
+
+    <ImageView
+        android:id="@+id/image6"
+        android:layout_width="118dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26"
+        app:srcCompat="@drawable/img6"
+        tools:srcCompat="@drawable/img6" />
+
+    <ImageView
+        android:id="@+id/image3"
+        android:layout_width="115dp"
+        android:layout_height="118dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.099"
+        app:srcCompat="@drawable/img3"
+        tools:srcCompat="@drawable/img2" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="117dp"
+        android:layout_height="118dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.099"
+        app:srcCompat="@drawable/img2"
+        tools:srcCompat="@drawable/img3" />
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="139dp"
+        android:layout_height="133dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.094"
+        app:srcCompat="@drawable/img1"
+        tools:srcCompat="@drawable/img1" />
+
+    <ImageView
+        android:id="@+id/image4"
+        android:layout_width="136dp"
+        android:layout_height="107dp"
+        android:layout_marginBottom="568dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/img4"
+        tools:srcCompat="@drawable/img4" />
+
+    <ImageView
+        android:id="@+id/image5"
+        android:layout_width="115dp"
+        android:layout_height="106dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261"
+        app:srcCompat="@drawable/img5"
+        tools:srcCompat="@drawable/img5" />
+
+    <ImageView
+        android:id="@+id/OutputImage"
+        android:layout_width="422dp"
+        android:layout_height="286dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image2"
+        app:layout_constraintVertical_bias="0.948"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="429dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="#5CC4F2"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="413dp"
+            android:layout_height="46dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="Bike Gellery"
+            android:textColor="#000000"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+2. MainActivity.java:
+
+package com.example.imagegellery;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+    public void show_img(View v){
+        ImageView i1 = findViewById(R.id.image1);
+        ImageView i2 = findViewById(R.id.image2);
+        ImageView i3 = findViewById(R.id.image3);
+        ImageView i4 = findViewById(R.id.image4);
+        ImageView i5 = findViewById(R.id.image5);
+        ImageView i6 = findViewById(R.id.image6);
+
+        ImageView outImage = findViewById(R.id.OutputImage);
+
+        RadioButton r1 = findViewById(R.id.radioButtonImg1);
+        RadioButton r2 = findViewById(R.id.radioButtonImg2);
+        RadioButton r3 = findViewById(R.id.radioButtonImg3);
+        RadioButton r4 = findViewById(R.id.radioButtonImg4);
+        RadioButton r5 = findViewById(R.id.radioButtonImg5);
+        RadioButton r6 = findViewById(R.id.radioButtonImg6);
+
+        CheckBox c1 = findViewById(R.id.checkBox);
+
+        if(r1.isChecked()){
+             outImage.setImageDrawable(i1.getDrawable());
+        }
+        else if (r2.isChecked()){
+            outImage.setImageDrawable(i2.getDrawable());
+        }
+        else if (r3.isChecked()){
+            outImage.setImageDrawable(i3.getDrawable());
+        }
+        else if (r4.isChecked()){
+            outImage.setImageDrawable(i4.getDrawable());
+        }
+        else if (r5.isChecked()){
+            outImage.setImageDrawable(i5.getDrawable());
+        }
+        else if (r6.isChecked()){
+            outImage.setImageDrawable(i6.getDrawable());
+        }
+        else {
+            Toast.makeText(this,"Select an Image.",Toast.LENGTH_LONG).show();
+        }
+
+        if (c1.isChecked()){
+            outImage.setVisibility(View.VISIBLE);
+        }
+        else{
+            Toast.makeText(this,"Please Check Show Image.",Toast.LENGTH_LONG).show();
+            outImage.setVisibility(View.INVISIBLE);
+        }
+
+    }
+}

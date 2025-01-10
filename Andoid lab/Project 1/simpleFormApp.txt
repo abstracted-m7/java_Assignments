@@ -1,0 +1,103 @@
+{
+  "fertilizer_details": [
+    {
+      "use": "Quick nitrogen source for rapid growth.",
+      "farming": "Suitable for all crops.",
+      "amount": "20-50 kg/acre based on crop type.",
+      "price": "₹30-50/kg.",
+      "variants": "Granular and liquid.",
+      "weather": "Apply before rain; avoid in wet conditions.",
+      "storage": "Cool, dry, and secure; explosive material."
+    },
+    {
+      "use": "Provides nitrogen and sulfur; improves soil acidity.",
+      "farming": "Paddy, sugarcane, and wheat.",
+      "amount": "20-40 kg/acre.",
+      "price": "₹20-35/kg.",
+      "variants": "Crystalline or powder.",
+      "weather": "Apply in dry weather; mix well with soil.",
+      "storage": "Dry, moisture-free place."
+    },
+    {
+      "use": "Phosphorus and calcium for root and flower growth.",
+      "farming": "Fruits, flowers, and root crops.",
+      "amount": "2-5 kg/acre.",
+      "price": "₹50-100/kg.",
+      "variants": "Powdered or granular.",
+      "weather": "Apply in moist soil conditions.",
+      "storage": "Cool, ventilated space."
+    },
+    {
+      "use": "Balanced NPK nutrients for overall growth.",
+      "farming": "Vegetables, fruits, and cereals.",
+      "amount": "30-60 kg/acre.",
+      "price": "₹25-50/kg.",
+      "variants": "Different NPK ratios available.",
+      "weather": "Use during planting or early growth stages.",
+      "storage": "Keep dry and away from sunlight."
+    },
+    {
+      "use": "High phosphorus for root and fruit development.",
+      "farming": "All crops.",
+      "amount": "10-20 kg/acre.",
+      "price": "₹30-45/kg.",
+      "variants": "Granular.",
+      "weather": "Apply in dry soil before sowing.",
+      "storage": "Cool, moisture-free area."
+    },
+    {
+      "use": "Provides calcium and nitrogen for strong plants.",
+      "farming": "Vegetables, fruits, and cereals.",
+      "amount": "20-30 kg/acre.",
+      "price": "₹30-55/kg.",
+      "variants": "Granular or liquid.",
+      "weather": "Use in dry weather or after irrigation.",
+      "storage": "Store in sealed bags; avoid moisture."
+    },
+    {
+      "use": "Soil conditioner; adds calcium and sulfur.",
+      "farming": "Paddy, wheat, and groundnut.",
+      "amount": "20-50 kg/acre.",
+      "price": "₹8-20/kg.",
+      "variants": "Powder.",
+      "weather": "Apply in dry conditions; mix with soil.",
+      "storage": "Dry, cool area."
+    },
+    {
+      "use": "Corrects iron deficiency; promotes chlorophyll.",
+      "farming": "Horticultural and ornamental crops.",
+      "amount": "0.5-1 kg/acre.",
+      "price": "₹800-1,500/kg.",
+      "variants": "Powder or liquid.",
+      "weather": "Apply in early morning or late evening.",
+      "storage": "Airtight, dry container."
+    },
+    {
+      "use": "Provides magnesium for photosynthesis.",
+      "farming": "Vegetables, fruits, and flowers.",
+      "amount": "10-15 kg/acre.",
+      "price": "₹20-50/kg.",
+      "variants": "Powder or crystalline.",
+      "weather": "Apply in dry soil.",
+      "storage": "Keep dry and sealed."
+    },
+    {
+      "use": "Enhances soil health and organic content.",
+      "farming": "All crops.",
+      "amount": "5-10 tons/acre.",
+      "price": "₹200-400/quintal.",
+      "variants": "Dried or fresh.",
+      "weather": "Apply before planting.",
+      "storage": "Keep covered to prevent drying."
+    },
+    {
+      "use": "Boosts root and fruit formation.",
+      "farming": "Boro, Amon, Aus.",
+      "amount": {
+        "Boro": "10-20 kg/acre",
+        "Amon": "8-15 kg/acre",
+        "Aus": "5-10 kg/acre"
+      },
+      "price": "₹25-40/kg.",
+      "variants": "Granular.",
+     

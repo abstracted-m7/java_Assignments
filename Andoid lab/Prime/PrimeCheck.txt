@@ -1,0 +1,151 @@
+```Assignment 8 : Prime Number Check ```
+
+1. Activity_prime_check.xml  :
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".prime_check">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Prime Check"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:background="@drawable/shape_btn"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="109dp" />
+
+        <EditText
+            android:id="@+id/inputNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter a number"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/checkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="Check Prime" />
+
+        <TextView
+            android:id="@+id/resultText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:textColor="@color/white"
+            android:text="Result will be displayed here" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+2. prime_check.java :
+
+package com.example.assignmenthub;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class prime_check extends AppCompatActivity {
+
+    // Declare views
+    private EditText inputNumber;
+    private Button checkButton;
+    private TextView resultText;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_prime_check);
+
+        // Initialize views
+        inputNumber = findViewById(R.id.inputNumber);
+        checkButton = findViewById(R.id.checkButton);
+        resultText = findViewById(R.id.resultText);
+
+        // Set button click listener
+        checkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                primeCheck();
+            }
+        });
+    }
+
+    // Method to handle prime check
+    private void primeCheck() {
+        // Get user input
+        String input = inputNumber.getText().toString();
+
+        // Validate input
+        if (input.isEmpty()) {
+            Toast.makeText(this, "Please enter a number", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            int number = Integer.parseInt(input);
+
+            // Check if the number is prime
+            String result = primeCheckFun(number);
+            resultText.setText(result);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Method to check if a number is prime
+    private String primeCheckFun(int number) {
+        boolean isPrime = isPrime(number);
+
+        if (isPrime) {
+            return number + " is a prime number.";
+        } else {
+            return number + " is not a prime number.";
+        }
+    }
+
+    // Helper function to determine if a number is prime
+    private boolean isPrime(int num) {
+        if (num <= 1) return false;
+
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+}

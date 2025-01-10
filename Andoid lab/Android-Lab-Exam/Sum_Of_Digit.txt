@@ -1,0 +1,45 @@
+private EditText input;
+    private EditText output;
+    private Button button;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_digit_sum);
+        // Initialize the views
+        input = findViewById(R.id.input);
+        output = findViewById(R.id.output);
+        button = findViewById(R.id.button);
+        // Set onClickListener for the button
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculateDigitSum();
+            }
+        });
+    }
+    private void calculateDigitSum() {
+        try {
+            // Get the input number as a string
+            String inputText = input.getText().toString().trim();
+            // Check if the input is empty
+            if (inputText.isEmpty()) {
+                Toast.makeText(this, "Please enter a number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            // Parse the input as an integer
+            int number = Integer.parseInt(inputText);
+
+            // Calculate the sum of digits
+            int sum = 0;
+            while (number != 0) {
+                sum += number % 10;
+                number /= 10;
+            }
+            // Display the result
+            output.setText(String.valueOf(sum));
+            output.setVisibility(View.VISIBLE);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid input. Please enter a valid number.", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
